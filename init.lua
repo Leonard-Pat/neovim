@@ -1,4 +1,9 @@
-require("leo");
-require("leo.packer");
-require("leo.set");
-require("leo.remap");
+require("colour-scheme-config")
+require("lualine-config")
+require("mason-config")
+require("nvim-tree-config")
+require("packer-config")
+require("remap-config")
+require("set-config")
+require("telescope-config")
+require("treesitter-config")
