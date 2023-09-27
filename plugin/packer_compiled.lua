@@ -94,6 +94,11 @@ _G.packer_plugins = {
     path = "/Users/leopat/.local/share/nvim/site/pack/packer/start/cmp_luasnip",
     url = "https://github.com/saadparwaiz1/cmp_luasnip"
   },
+  ["formatter.nvim"] = {
+    loaded = true,
+    path = "/Users/leopat/.local/share/nvim/site/pack/packer/start/formatter.nvim",
+    url = "https://github.com/mhartington/formatter.nvim"
+  },
   ["lspkind-nvim"] = {
     loaded = true,
     path = "/Users/leopat/.local/share/nvim/site/pack/packer/start/lspkind-nvim",
