@@ -17,3 +17,11 @@ vim.keymap.set("n", "<leader>Y", [["+Y]])
 
 -- replace the current word
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+
+vim.keymap.set("n", "<leader>sv", "<C-w>v");
+vim.keymap.set("n", "<leader>sx", ":close<CR>");
+
+vim.keymap.set("n", "<leader>to", ":tabnew<CR>");
+vim.keymap.set("n", "<leader>tx", ":tabclose<CR>");
+vim.keymap.set("n", "<leader>tn", ":tabn<CR>");
+vim.keymap.set("n", "<leader>tp", ":tabp<CR>");

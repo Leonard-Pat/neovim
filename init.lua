@@ -1,4 +1,5 @@
 require("colour-scheme-config")
+require("format-config")
 require("lualine-config")
 require("mason-config")
 require("nvim-tree-config")

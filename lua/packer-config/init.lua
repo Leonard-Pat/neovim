@@ -5,8 +5,8 @@ vim.cmd [[packadd packer.nvim]]
 
 return require('packer').startup(function(use)
   -- Packer can manage itself
-  use 'wbthomason/packer.nvim'
 
+  use 'wbthomason/packer.nvim'
 use {
   'nvim-telescope/telescope.nvim', tag = '0.1.3',
 -- or                            , branch = '0.1.x',
@@ -23,21 +23,18 @@ use {'ryanoasis/vim-devicons'}
 use { "catppuccin/nvim", as = "catppuccin" }
 
 use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
-use {
-  'nvim-tree/nvim-tree.lua',
-  requires = {
-    'nvim-tree/nvim-web-devicons', -- optional
-  },
-}
+
+use {'nvim-tree/nvim-web-devicons'}
+use {'nvim-tree/nvim-tree.lua'}
   --> LSP and completion
-  use({ "williamboman/mason.nvim" })
-  use("williamboman/mason-lspconfig.nvim")
-  use("neovim/nvim-lspconfig") --> Collection of configurations for built-in LSP client
-  use("tami5/lspsaga.nvim") --> icons for LSP diagnostics
-  use("onsails/lspkind-nvim") --> vscode-like pictograms for neovim lsp completion items
-  use("hrsh7th/nvim-cmp") --> Autocompletion plugin
-  use("hrsh7th/cmp-nvim-lsp") --> LSP source for nvim-cmp
-  use("saadparwaiz1/cmp_luasnip") --> Snippets source for nvim-cmp
-  use("L3MON4D3/LuaSnip") --> Snippets plugin
-  require('packer').use { 'mhartington/formatter.nvim' }
+  use 'neovim/nvim-lspconfig'
+use 'hrsh7th/cmp-nvim-lsp'
+use 'hrsh7th/cmp-buffer'
+use 'hrsh7th/cmp-path'
+use 'hrsh7th/cmp-cmdline'
+use 'hrsh7th/nvim-cmp'
+use "L3MON4D3/LuaSnip"
+use "rafamadriz/friendly-snippets"
+
+require('packer').use { 'mhartington/formatter.nvim' }
 end)
