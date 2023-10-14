@@ -28,6 +28,18 @@ use {'nvim-tree/nvim-web-devicons'}
 use {'nvim-tree/nvim-tree.lua'}
   --> LSP and completion
   use 'neovim/nvim-lspconfig'
+  use {
+  'VonHeikemen/lsp-zero.nvim',
+  branch = 'v3.x',
+  requires = {
+    --- Uncomment these if you want to manage LSP servers from neovim
+     {'williamboman/mason.nvim'},
+     {'williamboman/mason-lspconfig.nvim'},
+
+    -- LSP Support
+    {'neovim/nvim-lspconfig'},
+  }
+}
 use 'hrsh7th/cmp-nvim-lsp'
 use 'hrsh7th/cmp-buffer'
 use 'hrsh7th/cmp-path'
