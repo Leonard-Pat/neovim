@@ -1,5 +1,10 @@
-require'nvim-treesitter.configs'.setup {
-    ensure_installed = {"javascript", "typescript", "c", "lua", "vim", "vimdoc", "query" },
+return {
+    "nvim-treesitter/nvim-treesitter",
+    config = function()
+     local treesitter = require'nvim-treesitter.configs'
+     treesitter.setup({
+
+    ensure_installed = {"rust", "cairo", "javascript", "typescript", "c", "lua", "vim", "vimdoc", "query" },
   
     -- Install parsers synchronously (only applied to `ensure_installed`)
     sync_install = false,
@@ -21,5 +26,7 @@ require'nvim-treesitter.configs'.setup {
       additional_vim_regex_highlighting = false,
   
     },
-  }
-  
+  })
+ 
+    end,
+}
