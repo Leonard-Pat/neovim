@@ -69,6 +69,23 @@ return {
 			vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
 		end
 
+		local util = require("lspconfig.util")
+
+		-- configure typescript server with plugin
+		lspconfig["cairo_language_server"].setup({
+			capabilities = capabilities,
+			on_attach = on_attach,
+			default_config = {
+				name = "cairo-language-server",
+				cmd = { "cairo-language-server" },
+				filetypes = { "cairo" },
+				root_dir = function(fname)
+					return util.root_pattern("Scarb.toml")(fname)
+						or util.root_pattern("Scarb.toml", "cairo_project.toml", ".git")(fname)
+				end,
+			},
+		})
+
 		-- configure typescript server with plugin
 		lspconfig["tsserver"].setup({
 			capabilities = capabilities,
