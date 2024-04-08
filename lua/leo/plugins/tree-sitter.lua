@@ -4,7 +4,17 @@ return {
 		local treesitter = require("nvim-treesitter.configs")
 		treesitter.setup({
 
-			ensure_installed = { "rust", "cairo", "javascript", "typescript", "c", "lua", "vim", "vimdoc", "query" },
+			ensure_installed = {
+				"rust",
+				"cairo",
+				"javascript",
+				"typescript",
+				"c",
+				"lua",
+				"vim",
+				"vimdoc",
+				"query",
+			},
 
 			-- Install parsers synchronously (only applied to `ensure_installed`)
 			sync_install = false,
