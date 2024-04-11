@@ -25,5 +25,7 @@ vim.opt.scrolloff = 8
 vim.opt.splitright = true
 vim.opt.splitbelow = true
 
-vim.opt.signcolumn = "yes"
+-- turn off swapfile
+vim.opt.swapfile = false
+
 vim.g.mapleader = " "
