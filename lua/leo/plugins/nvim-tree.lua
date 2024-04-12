@@ -25,7 +25,6 @@ return {
 							renamed = "U",
 							untracked = "U",
 							deleted = "D",
-							ignored = "I",
 						},
 					},
 				},
