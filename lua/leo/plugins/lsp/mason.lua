@@ -29,6 +29,7 @@ return {
 			ensure_installed = {
 				"tsserver",
 				"html",
+				"cairo_ls",
 				"lua_ls",
 				"pyright",
 			},
