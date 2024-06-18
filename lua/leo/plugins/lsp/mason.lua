@@ -27,14 +27,14 @@ return {
 		mason_lspconfig.setup({
 			-- list of servers for mason to install
 			ensure_installed = {
+				"cairo_ls",
 				"tsserver",
 				"html",
-				"cairo_ls",
+				"cssls",
+				"tailwindcss",
 				"lua_ls",
 				"pyright",
 			},
-			-- auto-install configured servers (with lspconfig)
-			automatic_installation = true, -- not the same as ensure_installed
 		})
 
 		mason_tool_installer.setup({
@@ -43,8 +43,8 @@ return {
 				"stylua", -- lua formatter
 				"isort", -- python formatter
 				"black", -- python formatter
-				"pylint", -- python linter
-				"eslint_d", -- js linter
+				"pylint",
+				"eslint_d",
 			},
 		})
 	end,
