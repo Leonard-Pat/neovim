@@ -4,15 +4,10 @@ return {
 	dependencies = {
 		"hrsh7th/cmp-buffer", -- source for text in buffer
 		"hrsh7th/cmp-path", -- source for file system paths
-		{
-			"L3MON4D3/LuaSnip",
-			-- follow latest release.
-			version = "v2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
-			-- install jsregexp (optional!).
-			build = "make install_jsregexp",
-		},
+		"L3MON4D3/LuaSnip",
 		"saadparwaiz1/cmp_luasnip", -- for autocompletion
 		"rafamadriz/friendly-snippets", -- useful snippets
+		"hrsh7th/cmp-nvim-lsp",
 		"onsails/lspkind.nvim", -- vs-code like pictograms
 	},
 	config = function()
@@ -34,6 +29,10 @@ return {
 					luasnip.lsp_expand(args.body)
 				end,
 			},
+			window = {
+				completion = cmp.config.window.bordered(),
+				documentation = cmp.config.window.bordered(),
+			},
 			mapping = cmp.mapping.preset.insert({
 				["<C-k>"] = cmp.mapping.select_prev_item(), -- previous suggestion
 				["<C-j>"] = cmp.mapping.select_next_item(), -- next suggestion
@@ -41,7 +40,7 @@ return {
 				["<C-f>"] = cmp.mapping.scroll_docs(4),
 				["<C-Space>"] = cmp.mapping.complete(), -- show completion suggestions
 				["<C-e>"] = cmp.mapping.abort(), -- close completion window
-				["<CR>"] = cmp.mapping.confirm({ select = false }),
+				["<CR>"] = cmp.mapping.confirm({ select = true }),
 			}),
 			-- sources for autocompletion
 			sources = cmp.config.sources({
