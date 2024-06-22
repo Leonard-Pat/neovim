@@ -20,31 +20,7 @@ return {
 			autotag = {
 				enable = true,
 			},
-			-- ensure these language parsers are installed
-			ensure_installed = {
-				"python",
-				"rust",
-				"cairo",
-				"json",
-				"javascript",
-				"typescript",
-				"tsx",
-				"yaml",
-				"html",
-				"scss",
-				"css",
-				"solidity",
-				"toml",
-				"markdown",
-				"markdown_inline",
-				"graphql",
-				"bash",
-				"lua",
-				"vim",
-				"dockerfile",
-				"gitignore",
-				"vimdoc",
-			},
+			auto_install = true, -- ensure these language parsers are installed
 			incremental_selection = {
 				enable = true,
 				keymaps = {
