@@ -18,7 +18,7 @@ return {
 				gitsign.reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
 			end, "Reset hunk")
 
-			map("n", "<leader>hR", gitsign.reset_buffer, "Reset buffer")
+			map("n", "<leader>hR", gitsign.reset_buffer, { desc = "Reset buffer" })
 
 			map("n", "<leader>hd", gitsign.diffthis, "Diff this")
 
