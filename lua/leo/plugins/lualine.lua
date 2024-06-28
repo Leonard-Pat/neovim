@@ -5,7 +5,7 @@ return {
 		lualine.setup({
 			options = {
 				icons_enabled = true,
-				theme = "palenight",
+				theme = "tokyonight",
 				component_separators = { left = "", right = "" },
 				section_separators = { left = "", right = "" },
 				disabled_filetypes = {
@@ -40,7 +40,7 @@ return {
 			tabline = {},
 			winbar = {},
 			inactive_winbar = {},
-			extensions = {},
+			extensions = { "mason", "lazy" },
 		})
 	end,
 }

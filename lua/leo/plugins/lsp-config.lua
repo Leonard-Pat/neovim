@@ -26,6 +26,10 @@ return {
 
 			local lspconfig = require("lspconfig")
 
+			lspconfig.emmet_ls.setup({
+				capabilities = capabilities,
+			})
+
 			lspconfig.cairo_ls.setup({
 				capabilities = capabilities,
 			})
@@ -57,11 +61,13 @@ return {
 
 			-- set keybinds
 
+			keymap.set("n", "<space>d", vim.diagnostic.open_float, { desc = "open floating diagnostics" })
+
 			keymap.set("n", "gD", vim.lsp.buf.declaration, { desc = "Go to declaration" }) -- go to declaration
 
 			keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, { desc = "See available code actions" }) -- see available code actions, in visual mode will apply to selection
 
-			keymap.set("n", "<leader>rn", vim.lsp.buf.rename, { desc = "Show buffer diagnostics" }) -- smart rename
+			keymap.set("n", "<leader>rn", vim.lsp.buf.rename, { desc = "Smart rename" }) -- smart rename
 
 			keymap.set("n", "K", vim.lsp.buf.hover, { desc = "Show documentation for what is under cursor" }) -- show documentation for what is under cursor
 
