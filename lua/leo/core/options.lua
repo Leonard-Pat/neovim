@@ -22,6 +22,8 @@ vim.opt.background = "dark"
 
 vim.opt.scrolloff = 8
 
+vim.opt.hlsearch = false
+
 -- window split
 vim.opt.splitright = true
 vim.opt.splitbelow = true
