@@ -19,6 +19,24 @@ return {
 		end,
 	},
 	{
+		"antosha417/nvim-lsp-file-operations",
+		requires = {
+			"nvim-lua/plenary.nvim",
+			"nvim-neo-tree/neo-tree.nvim",
+		},
+		config = function()
+			require("lsp-file-operations").setup()
+		end,
+	},
+	{
+		"zeioth/garbage-day.nvim",
+		dependencies = "neovim/nvim-lspconfig",
+		event = "VeryLazy",
+		opts = {
+			-- your options here
+		},
+	},
+	{
 		"neovim/nvim-lspconfig",
 		lazy = false,
 		config = function()
@@ -32,6 +50,7 @@ return {
 
 			lspconfig.cairo_ls.setup({
 				capabilities = capabilities,
+				cmd = { "scarb", "cairo-language-server", "--stdio" },
 			})
 
 			lspconfig.tailwindcss.setup({
