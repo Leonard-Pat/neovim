@@ -31,8 +31,8 @@ return {
 		dashboard.section.buttons.val = {
 			-- dashboard.button("SPC j", "󰈚   Restore Session", ":SessionRestore<cr>"),
 			dashboard.button("space fr", "󰱼   Find recent", ":Telescope oldfiles<CR>"),
-			dashboard.button("space ff", "   Find file", ":cd $HOME/dotfiles | Telescope find_files<CR>"),
-			dashboard.button("c", "   Config", ":edit ~/.config/nvim/init.lua <CR>"),
+			dashboard.button("space ff", "   Find file", "Telescope find_files<CR>"),
+			dashboard.button("c", "   Config", "cd: ~/.config/nvim/ | :edit init.lua <CR>"),
 			dashboard.button("u", "󰂖   Update plugins", "<cmd>lua require('lazy').sync()<CR>"),
 			dashboard.button("q", "   Quit NVIM", ":qa<CR>"),
 		}
