@@ -40,6 +40,8 @@ return {
 		"neovim/nvim-lspconfig",
 		lazy = false,
 		config = function()
+			vim.diagnostic.config({ virtual_text = false })
+
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 			local lspconfig = require("lspconfig")

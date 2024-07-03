@@ -21,7 +21,7 @@ return {
 
 			under_cursor = true,
 
-			min_count_to_highlight = 1,
+			min_count_to_highlight = 2,
 
 			should_enable = function(bufnr)
 				return true
