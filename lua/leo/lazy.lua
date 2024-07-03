@@ -11,5 +11,8 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
-	{ import = "leo.plugins" },
+	{ import = "leo.plugins.ui" },
+	{ import = "leo.plugins.lsp" },
+	{ import = "leo.plugins.navigation" },
+	{ import = "leo.plugins.utilities" },
 })
