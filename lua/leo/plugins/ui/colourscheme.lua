@@ -1,6 +1,7 @@
 return {
 	{ "catppuccin/nvim" },
-
+	{ "EdenEast/nightfox.nvim" },
+	{ "tiagovla/tokyodark.nvim" },
 	{
 		"folke/tokyonight.nvim",
 		lazy = false,

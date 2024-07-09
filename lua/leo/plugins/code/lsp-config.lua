@@ -32,15 +32,15 @@ return {
 		"zeioth/garbage-day.nvim",
 		dependencies = "neovim/nvim-lspconfig",
 		event = "VeryLazy",
-		opts = {
-			-- your options here
-		},
+		opts = {},
 	},
 	{
 		"neovim/nvim-lspconfig",
+		dependencies = { "dmmulroy/ts-error-translator.nvim" },
 		lazy = false,
 		config = function()
-			vim.diagnostic.config({ virtual_text = false })
+			-- better ts error messages
+			require("ts-error-translator").setup()
 
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
@@ -77,6 +77,13 @@ return {
 					},
 				},
 			})
+
+			-- Change the Diagnostic symbols in the sign column (gutter)
+			local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
+			for type, icon in pairs(signs) do
+				local hl = "DiagnosticSign" .. type
+				vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
+			end
 
 			local keymap = vim.keymap -- for conciseness
 
