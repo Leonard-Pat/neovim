@@ -2,6 +2,7 @@ return {
 	{ "catppuccin/nvim" },
 	{ "EdenEast/nightfox.nvim" },
 	{ "tiagovla/tokyodark.nvim" },
+	{ "ayu-theme/ayu-vim" },
 	{
 		"folke/tokyonight.nvim",
 		lazy = false,
