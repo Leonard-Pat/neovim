@@ -13,18 +13,22 @@ return {
 					style = "classic",
 				},
 				override = {
+
 					-- Line Numbers
 					LineNr = { fg = main_highlight, bold = true },
 					LineNrAbove = { fg = nordic_colors.gray2, bold = false },
 					LineNrBelow = { fg = nordic_colors.gray2, bold = false },
 					-- UI
-					NormalFloat = { link = "TelescopeNormal" },
+					NormalFloat = { fg = nordic_colors.white0 },
+
 					FloatTitle = { link = "TelescopeTitle" },
-					FloatBorder = { link = "TelescopePreviewBorder" },
+					FloatBorder = { fg = nordic_colors.orange.base, bg = nordic_colors.gray0 },
 					-- StatusLine
 					StatusLine = { fg = nordic_colors.gray2, bg = nordic_colors.black0 },
 					StatusLineHighlight = { fg = nordic_colors.gray2, bg = main_highlight },
 					StatusLineSep = { fg = main_highlight, bg = nordic_colors.black0 },
+
+					BufferLineFill = { bg = nordic_colors.black0 },
 				},
 			})
 

@@ -5,6 +5,10 @@ return {
 	opts = {
 		options = {
 			mode = "tabs",
+			offsets = {
+				seperator = false,
+			},
+			seperator_style = "thin",
 		},
 	},
 }
