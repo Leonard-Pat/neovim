@@ -14,7 +14,10 @@ return {
 					command = "/Users/leopat/.asdf/shims/scarb run test-ts --full-trace",
 					env = { CI = true },
 					command_args = function(context)
-						return {}
+						return {
+							"--grep=" .. context.test_name_pattern,
+							context.path,
+						}
 					end,
 					cwd = function()
 						return vim.fn.getcwd()
