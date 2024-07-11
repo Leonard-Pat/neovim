@@ -15,6 +15,8 @@ return {
 					env = { CI = true },
 					command_args = function(context)
 						return {
+							"--reporter=json",
+							"--reporter-options=output=" .. context.results_path,
 							"--grep=" .. context.test_name_pattern,
 							context.path,
 						}
@@ -30,8 +32,9 @@ return {
 			"n",
 			"<leader>nr",
 			'<cmd>:lua require("neotest").run.run(vim.fn.expand("%"))<CR>',
-			{ desc = "Run test" }
+			{ desc = "Run all tests" }
 		)
+		keymap.set("n", "<leader>nR", '<cmd>:lua require("neotest").run.run()<CR>', { desc = "Run nearest test" })
 		keymap.set("n", "<leader>no", "<cmd>Neotest output<CR>", { desc = "Test Output" })
 		keymap.set("n", "<leader>ni", "<cmd>Neotest attach<CR>", { desc = "Attach to test" })
 		keymap.set("n", "<leader>ns", "<cmd>Neotest summary<CR>", { desc = "Test summary panel" })
