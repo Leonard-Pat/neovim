@@ -2,32 +2,35 @@ return {
 	{
 		"AlexvZyl/nordic.nvim",
 		config = function()
-			local palette = require("nordic.colors")
-			local main_highlight = palette.orange.base
+			local nordic_colors = require("nordic.colors")
+			local main_highlight = nordic_colors.orange.base
 			require("nordic").setup({
+				on_palette = function(palette)
+					palette.gray0 = palette.black2
+					return palette
+				end,
 				telescope = {
 					style = "classic",
 				},
 				override = {
 					-- Line Numbers
 					LineNr = { fg = main_highlight, bold = true },
-					LineNrAbove = { fg = palette.gray2, bold = false },
-					LineNrBelow = { fg = palette.gray2, bold = false },
+					LineNrAbove = { fg = nordic_colors.gray2, bold = false },
+					LineNrBelow = { fg = nordic_colors.gray2, bold = false },
 					-- UI
 					NormalFloat = { link = "TelescopeNormal" },
 					FloatTitle = { link = "TelescopeTitle" },
 					FloatBorder = { link = "TelescopePreviewBorder" },
 					-- StatusLine
-					StatusLine = { fg = palette.gray2, bg = palette.black0 },
-					StatusLineHighlight = { fg = palette.gray2, bg = main_highlight },
-					StatusLineSep = { fg = main_highlight, bg = palette.black0 },
+					StatusLine = { fg = nordic_colors.gray2, bg = nordic_colors.black0 },
+					StatusLineHighlight = { fg = nordic_colors.gray2, bg = main_highlight },
+					StatusLineSep = { fg = main_highlight, bg = nordic_colors.black0 },
 				},
 			})
 
 			require("nordic").load()
 		end,
 	},
-	{ "catppuccin/nvim" },
 	{
 		"folke/tokyonight.nvim",
 		lazy = false,

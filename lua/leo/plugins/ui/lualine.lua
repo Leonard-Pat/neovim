@@ -37,7 +37,7 @@ return {
 						"branch",
 						icon = { " " },
 						separator = "",
-						padding = 0,
+						padding = 2,
 					},
 					{
 						"diff",
@@ -48,6 +48,7 @@ return {
 							removed = " ",
 						},
 						source = nil,
+						padding = 2,
 					},
 				},
 				lualine_d = { "harpoon2" },
