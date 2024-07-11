@@ -5,12 +5,20 @@ return {
 	keys = {
 		{
 			"<leader>xx",
-			"<cmd>Trouble diagnostics toggle<cr>",
+			function()
+				local trouble = require("trouble")
+				if trouble.is_open() then
+					trouble.toggle()
+				else
+					trouble.open("diagnostics")
+					trouble.focus()
+				end
+			end,
 			desc = "Diagnostics (Trouble)",
 		},
 		{
 			"<leader>xX",
-			"<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
+			"<cmd>Trouble diagnostics focus filter.buf=0<cr>",
 			desc = "Buffer Diagnostics (Trouble)",
 		},
 		{

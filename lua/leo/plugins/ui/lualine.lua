@@ -2,12 +2,14 @@ return {
 	"nvim-lualine/lualine.nvim",
 	config = function()
 		local lualine = require("lualine")
+		local C = require("nordic.colors")
+
 		lualine.setup({
 			options = {
 				icons_enabled = true,
-				theme = "tokyonight",
-				component_separators = { left = "", right = "" },
-				section_separators = { left = "", right = "" },
+				component_separators = { left = "", right = "" },
+				theme = "nordic",
+				section_separators = { left = " ", right = "" },
 				disabled_filetypes = {
 					statusline = {},
 					winbar = {},
@@ -22,12 +24,62 @@ return {
 				},
 			},
 			sections = {
-				lualine_a = { "mode" },
-				lualine_b = { "branch", "diff", "diagnostics" },
-				lualine_c = { "filename", "harpoon2" },
-				lualine_x = { "encoding", "fileformat", "filetype" },
-				lualine_y = { "progress" },
-				lualine_z = { "location" },
+				lualine_a = {
+					{
+						"mode",
+						icon = { "" },
+						separator = { right = " ", left = "" },
+					},
+				},
+				lualine_b = { "filename" },
+				lualine_c = {
+					{
+						"branch",
+						icon = { " " },
+						separator = "",
+						padding = 0,
+					},
+					{
+						"diff",
+						colored = true, -- Displays a colored diff status if set to true
+						symbols = {
+							added = " ",
+							modified = " ",
+							removed = " ",
+						},
+						source = nil,
+					},
+				},
+				lualine_d = { "harpoon2" },
+				lualine_x = {
+					{
+						"diagnostics",
+						sources = { "nvim_diagnostic" },
+						symbols = {
+							error = " ",
+							warn = " ",
+							info = " ",
+							hint = "󱤅 ",
+							other = "󰠠 ",
+						},
+						colored = true,
+						padding = 2,
+					},
+					"fileformat",
+					"filetype",
+				},
+				lualine_y = {},
+				lualine_z = {
+					{
+						"location",
+						icon = { "", align = "left" },
+					},
+					{
+						"progress",
+						icon = { "", align = "left" },
+						separator = { right = "", left = "" },
+					},
+				},
 			},
 			inactive_sections = {
 				lualine_a = {},
@@ -40,7 +92,7 @@ return {
 			tabline = {},
 			winbar = {},
 			inactive_winbar = {},
-			extensions = { "mason", "lazy" },
+			extensions = { "mason", "lazy", "telescope", "nvim-tree" },
 		})
 	end,
 }
