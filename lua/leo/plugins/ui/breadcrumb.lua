@@ -2,7 +2,7 @@ return {
 	{
 		"utilyre/barbecue.nvim",
 		name = "barbecue",
-		theme = "tokynoight",
+		theme = "tokyonight",
 		version = "*",
 		dependencies = {
 			"SmiteshP/nvim-navic",

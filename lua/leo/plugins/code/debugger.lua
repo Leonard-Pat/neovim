@@ -27,9 +27,11 @@ return {
 				{
 					type = "pwa-node",
 					request = "launch",
-					name = "Launch file",
-					program = "${file}",
-					cwd = "${workspaceFolder}",
+					name = "Launch Current File (pwa-node)",
+					cwd = vim.fn.getcwd(),
+					args = { "${file}" },
+					sourceMaps = true,
+					protocol = "inspector",
 				},
 				{
 					type = "pwa-node",
@@ -53,13 +55,26 @@ return {
 				},
 				{
 					type = "pwa-node",
-					request = "attatch",
+					request = "launch",
 					name = "Debug Integration Tests",
 					runtimeExecutable = "~/.asdf/shims/scarb run test-ts",
 					rootPath = "${workspaceFolder}",
 					cwd = "${workspaceFolder}",
 					console = "integratedTerminal",
 					internalConsoleOptions = "neverOpen",
+				},
+				{
+					type = "pwa-node",
+					request = "launch",
+					name = "Launch Test Current File (pwa-node with jest)",
+					cwd = vim.fn.getcwd(),
+					runtimeArgs = { "~/.asdf/shims/scarb run test" },
+					runtimeExecutable = "node",
+					rootPath = "${workspaceFolder}",
+					sourceMaps = true,
+					console = "integratedTerminal",
+					internalConsoleOptions = "neverOpen",
+					skipFiles = { "<node_internals>/**", "node_modules/**" },
 				},
 			}
 		end

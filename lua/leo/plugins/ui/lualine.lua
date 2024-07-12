@@ -51,8 +51,9 @@ return {
 						padding = 2,
 					},
 				},
-				lualine_d = { "harpoon2" },
+				lualine_d = {},
 				lualine_x = {
+					{ "harpoon2" },
 					{
 						"diagnostics",
 						sources = { "nvim_diagnostic" },

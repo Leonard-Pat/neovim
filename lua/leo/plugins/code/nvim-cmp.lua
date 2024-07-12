@@ -104,5 +104,49 @@ return {
 				},
 			},
 		})
+
+		local s = luasnip.snippet
+		local t = luasnip.text_node
+		local i = luasnip.insert_node
+		local f = luasnip.function_node
+
+		-- custom snippets
+		-- Lets you use <Tab> to navigate through placeholders
+		vim.keymap.set({ "i", "s" }, "<Tab>", function()
+			luasnip.jump(1)
+		end, { silent = true })
+
+		-- describe block for tests
+		luasnip.add_snippets("typescript", {
+			s("dblock ", {
+				t('describe("'),
+				f(function()
+					local filename = vim.fn.expand("%:t")
+					local name = filename:gsub("%.test%.ts$", "")
+					name = name:gsub("_", " ")
+					name = name:gsub("^%l", string.upper)
+					return name .. " Tests"
+				end, {}),
+				t('", function () {'),
+				t({ "", '  it("' }),
+				i(1),
+				t('", async function () {'),
+				t({ "", "    " }),
+				i(2),
+				t({ "", "  });", "});" }),
+			}),
+		})
+
+		-- it block for tests
+		luasnip.add_snippets("typescript", {
+			s("itblock", {
+				t('it("'),
+				i(1),
+				t('", async function () {'),
+				t({ "", "  " }),
+				i(2),
+				t({ "", "});" }),
+			}),
+		})
 	end,
 }

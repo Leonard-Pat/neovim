@@ -18,7 +18,7 @@
   "friendly-snippets": { "branch": "main", "commit": "45a1b96e46efe5fce8af325d4bed45feb9d29d0f" },
   "garbage-day.nvim": { "branch": "main", "commit": "4a1160bfffb2f499fb55a54333f29d160ab3c8a1" },
   "git-conflict.nvim": { "branch": "main", "commit": "bfd9fe6fba9a161fc199771d85996236a0d0faad" },
-  "gitsigns.nvim": { "branch": "main", "commit": "7178d1a430dcfff8a4c92d78b9e39e0297a779c0" },
+  "gitsigns.nvim": { "branch": "main", "commit": "e784e5a078f993f7218b8a857cb581d5b9ca42dc" },
   "harpoon": { "branch": "harpoon2", "commit": "0378a6c428a0bed6a2781d459d7943843f374bce" },
   "harpoon-lualine": { "branch": "master", "commit": "d1b873c19b701fd80d60a67d086dbb3bcc4eb00e" },
   "indent-blankline.nvim": { "branch": "master", "commit": "65e20ab94a26d0e14acac5049b8641336819dfc7" },
