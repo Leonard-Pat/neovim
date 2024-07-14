@@ -11,5 +11,8 @@ return {
 		opts = {
 			-- configurations go here
 		},
+		conifg = function()
+			require("barbecue.ui").toggle()
+		end,
 	},
 }

@@ -11,12 +11,10 @@ return {
 		require("neotest").setup({
 			adapters = {
 				require("neotest-mocha")({
-					command = "/Users/leopat/.asdf/shims/scarb run test-ts --full-trace",
+					command = "/Users/leopat/.local/share/mise/shims/scarb run test-ts --full-trace",
 					env = { CI = true },
 					command_args = function(context)
 						return {
-							"--reporter=json",
-							"--reporter-options=output=" .. context.results_path,
 							"--grep=" .. context.test_name_pattern,
 							context.path,
 						}
@@ -35,8 +33,7 @@ return {
 			{ desc = "Run all tests" }
 		)
 		keymap.set("n", "<leader>nR", '<cmd>:lua require("neotest").run.run()<CR>', { desc = "Run nearest test" })
-		keymap.set("n", "<leader>no", "<cmd>Neotest output<CR>", { desc = "Test Output" })
-		keymap.set("n", "<leader>ni", "<cmd>Neotest attach<CR>", { desc = "Attach to test" })
+		keymap.set("n", "<leader>no", "<cmd>Neotest attach<CR>", { desc = "Attach to test" })
 		keymap.set("n", "<leader>ns", "<cmd>Neotest summary<CR>", { desc = "Test summary panel" })
 		keymap.set("n", "<leader>nk", "<cmd>Neotest stop<CR>", { desc = "Stop test" })
 	end,

@@ -48,7 +48,7 @@ return {
 							removed = " ",
 						},
 						source = nil,
-						padding = 2,
+						padding = 0,
 					},
 				},
 				lualine_d = {},

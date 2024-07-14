@@ -89,7 +89,7 @@ return {
 
 			-- set keybinds
 
-			keymap.set("n", "<space>d", vim.diagnostic.open_float, { desc = "open floating diagnostics" })
+			keymap.set("n", "<space>q", vim.diagnostic.open_float, { desc = "open floating diagnostics" })
 
 			keymap.set("n", "gD", vim.lsp.buf.declaration, { desc = "Go to declaration" }) -- go to declaration
 

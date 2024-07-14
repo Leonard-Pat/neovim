@@ -1,6 +1,8 @@
 return {
 	{
 		"AlexvZyl/nordic.nvim",
+		lazy = false,
+		priority = 2000,
 		config = function()
 			local nordic_colors = require("nordic.colors")
 			local main_highlight = nordic_colors.orange.base

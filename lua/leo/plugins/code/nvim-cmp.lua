@@ -110,12 +110,6 @@ return {
 		local i = luasnip.insert_node
 		local f = luasnip.function_node
 
-		-- custom snippets
-		-- Lets you use <Tab> to navigate through placeholders
-		vim.keymap.set({ "i", "s" }, "<Tab>", function()
-			luasnip.jump(1)
-		end, { silent = true })
-
 		-- describe block for tests
 		luasnip.add_snippets("typescript", {
 			s("dblock ", {
