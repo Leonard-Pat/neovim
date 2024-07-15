@@ -25,7 +25,7 @@ return {
 
 				vim.keymap.set("n", "<leader>hR", gitsign.reset_buffer, { desc = "Reset buffer" })
 
-				vim.keymap.set("n", "<leader>hd", gitsign.diffthis, { desc = "Diff this" })
+				vim.keymap.set("n", "<leader>hd", gitsign.diffthis, { desc = "Diff entire buffer" })
 
 				-- Text object
 				vim.keymap.set({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", { desc = "Gitsigns select hunk" })
