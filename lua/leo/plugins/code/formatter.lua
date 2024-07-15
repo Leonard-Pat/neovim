@@ -24,7 +24,7 @@ return {
 
 			formatters = {
 				scarb_fmt = {
-					command = "/Users/leopat/.asdf/shims/scarb",
+					command = "/Users/leopat/.local/share/mise/shims/scarb",
 					args = { "fmt" },
 					stdin = false,
 					cwd = require("conform.util").root_file({ "Scarb.toml" }),
