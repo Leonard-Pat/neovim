@@ -46,6 +46,10 @@ return {
 
 			local lspconfig = require("lspconfig")
 
+			lspconfig.rust_analyzer.setup({
+				capabilities = capabilities,
+			})
+
 			lspconfig.emmet_ls.setup({
 				capabilities = capabilities,
 			})
@@ -98,7 +102,7 @@ return {
 
 			keymap.set("n", "K", vim.lsp.buf.hover, { desc = "Show documentation for what is under cursor" }) -- show documentation for what is under cursor
 
-			keymap.set("n", "<leader>rs", ":LspRestart<CR>", { desc = "Resart LSP" }) -- mapping to restart lsp if necessary
+			keymap.set("n", "<leader>rs", ":LspRestart<CR>", { desc = "Restart LSP" }) -- mapping to restart lsp if necessary
 		end,
 	},
 }

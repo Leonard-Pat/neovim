@@ -2,7 +2,7 @@ return {
 	"hrsh7th/nvim-cmp",
 	event = "InsertEnter",
 	dependencies = {
-		"ray-x/lsp_signature.nvim",
+		"hrsh7th/cmp-nvim-lsp-signature-help",
 		"hrsh7th/cmp-buffer", -- source for text in buffer
 		"hrsh7th/cmp-path", -- source for file system paths
 		"L3MON4D3/LuaSnip",
@@ -37,20 +37,28 @@ return {
 			end
 		end
 
-		vim.api.nvim_create_autocmd("LspAttach", {
-			callback = function(args)
-				local bufnr = args.buf
-				local client = vim.lsp.get_client_by_id(args.data.client_id)
-				if vim.tbl_contains({ "null-ls" }, client.name) then -- blacklist lsp
-					return
-				end
-				require("lsp_signature").on_attach({}, bufnr)
-			end,
-		})
-
 		cmp.setup({
+			enabled = function()
+				buftype = vim.api.nvim_buf_get_option(0, "buftype")
+				if buftype == "prompt" then
+					return false
+				end
+				-- disable completion in comments
+				local context = require("cmp.config.context")
+				-- keep command mode completion enabled when cursor is in a comment
+				if vim.api.nvim_get_mode().mode == "c" then
+					return true
+				else
+					return not context.in_treesitter_capture("comment") and not context.in_syntax_group("Comment")
+				end
+			end,
 			completion = {
 				completeopt = "menu,menuone,preview,noselect",
+			},
+			filetypes = {
+				markdown = {
+					sources = {},
+				},
 			},
 			snippet = { -- configure how nvim-cmp interacts with snippet engine
 				expand = function(args)
@@ -72,6 +80,7 @@ return {
 			}),
 			-- sources for autocompletion
 			sources = cmp.config.sources({
+				{ name = "nvim_lsp_signature_help" },
 				{ name = "nvim_lsp" },
 				{ name = "luasnip" }, -- snippets
 				{ name = "path" }, -- file system paths
