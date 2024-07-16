@@ -12,7 +12,6 @@ return {
 			adapters = {
 				require("neotest-mocha")({
 					command = "/Users/leopat/.local/share/mise/shims/scarb run test-ts --full-trace",
-					env = { CI = true },
 					command_args = function(context)
 						return {
 							"--grep=" .. context.test_name_pattern,

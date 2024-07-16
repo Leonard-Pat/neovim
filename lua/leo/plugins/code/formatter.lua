@@ -19,7 +19,6 @@ return {
 				markdown = { "prettier" },
 				lua = { "stylua" },
 				python = { "isort", "black" },
-				["*"] = { "codespell" },
 			},
 
 			formatters = {
