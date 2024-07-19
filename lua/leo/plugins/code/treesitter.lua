@@ -128,18 +128,6 @@ return {
 			},
 		})
 
-		vim.api.nvim_create_autocmd("CmdwinEnter", {
-			pattern = "[:>]",
-			desc = "If the treesitter vim parser is installed, set the syntax again to get highlighting in the command window",
-			group = vim.api.nvim_create_augroup("cmdwin_syntax", {}),
-			callback = function()
-				local is_loadable, _ = pcall(vim.treesitter.language.add, "vim")
-				if is_loadable then
-					vim.cmd("set syntax=vim")
-				end
-			end,
-		})
-
 		local ts_repeat_move = require("nvim-treesitter.textobjects.repeatable_move")
 
 		-- vim way: ; goes to the direction you were moving.

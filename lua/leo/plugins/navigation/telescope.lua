@@ -48,23 +48,5 @@ return {
 
 		-- Find undo history
 		keymap.set("n", "<leader>fu", "<cmd>Telescope undo<cr>", { desc = "Find undo history" })
-
-		-- LSP related keymaps
-		keymap.set("n", "gR", "<cmd>Telescope lsp_references<CR>", { desc = "Show LSP references" })
-		keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<CR>", { desc = "Show LSP implementations" })
-
-		vim.keymap.set("n", "<leader>fM", function()
-			require("telescope.builtin").lsp_workspace_symbols({
-				ignore_symbols = { "boolean", "string", "array", "object" },
-			})
-		end, { desc = "Search functions in workspace" })
-
-		vim.keymap.set("n", "<leader>fm", function()
-			require("telescope.builtin").lsp_document_symbols({
-				ignore_symbols = { "boolean", "string", "array", "object" },
-			})
-		end, { desc = "Search functions in current file" })
-
-		keymap.set("n", "<leader>fi", "<cmd>Telescope lsp_implementations<CR>", { desc = "Show LSP implementation" }) -- show lsp implementations
 	end,
 }

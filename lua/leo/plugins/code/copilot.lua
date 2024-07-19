@@ -9,10 +9,21 @@ return {
 		},
 		event = "VeryLazy",
 		opts = {
-			debug = true, -- Enable debugging
 			show_help = true, -- Show help actions
 			window = {
 				layout = "float",
+			},
+		},
+		keys = {
+			{
+				"<leader>ai",
+				function()
+					local input = vim.fn.input("Ask Copilot: ")
+					if input ~= "" then
+						vim.cmd("CopilotChat " .. input)
+					end
+				end,
+				desc = "CopilotChat - Ask input",
 			},
 		},
 	},

@@ -5,7 +5,6 @@ return {
 		"theHamsta/nvim-dap-virtual-text",
 		"nvim-neotest/nvim-nio",
 		"mortepau/codicons.nvim",
-		"mxsdev/nvim-dap-vscode-js",
 		"jay-babu/mason-nvim-dap.nvim",
 	},
 	config = function()
@@ -15,12 +14,6 @@ return {
 		require("mason-nvim-dap").setup()
 
 		-- setup debugging for javascript/typescript
-
-		require("dap-vscode-js").setup({
-			debugger_path = vim.fn.stdpath("data") .. "/mason/packages/js-debug-adapter",
-			debugger_cmd = { "js-debug-adapter" },
-			adapters = { "pwa-node", "pwa-chrome", "pwa-msedge", "node-terminal", "pwa-extensionHost" },
-		})
 
 		for _, language in ipairs({ "typescript", "javascript" }) do
 			require("dap").configurations[language] = {
@@ -52,29 +45,6 @@ return {
 					cwd = "${workspaceFolder}",
 					console = "integratedTerminal",
 					internalConsoleOptions = "neverOpen",
-				},
-				{
-					type = "pwa-node",
-					request = "launch",
-					name = "Debug Integration Tests",
-					runtimeExecutable = "~/.asdf/shims/scarb run test-ts",
-					rootPath = "${workspaceFolder}",
-					cwd = "${workspaceFolder}",
-					console = "integratedTerminal",
-					internalConsoleOptions = "neverOpen",
-				},
-				{
-					type = "pwa-node",
-					request = "launch",
-					name = "Launch Test Current File (pwa-node with jest)",
-					cwd = vim.fn.getcwd(),
-					runtimeArgs = { "~/.asdf/shims/scarb run test" },
-					runtimeExecutable = "node",
-					rootPath = "${workspaceFolder}",
-					sourceMaps = true,
-					console = "integratedTerminal",
-					internalConsoleOptions = "neverOpen",
-					skipFiles = { "<node_internals>/**", "node_modules/**" },
 				},
 			}
 		end
