@@ -2,7 +2,6 @@ return {
 	"nvim-lualine/lualine.nvim",
 	config = function()
 		local lualine = require("lualine")
-		local C = require("nordic.colors")
 
 		lualine.setup({
 			options = {
@@ -53,7 +52,7 @@ return {
 				},
 				lualine_d = {},
 				lualine_x = {
-					{ "harpoon2" },
+					{ "" },
 					{
 						"diagnostics",
 						sources = { "nvim_diagnostic" },

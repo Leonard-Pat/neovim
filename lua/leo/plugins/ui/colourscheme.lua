@@ -21,8 +21,8 @@ return {
 					bg_dark = { bg = "#000000", fg = "#FFFFFF" },
 					-- Line Numbers
 					LineNr = { fg = main_highlight, bold = true },
-					LineNrAbove = { fg = nordic_colors.gray2, bold = false },
-					LineNrBelow = { fg = nordic_colors.gray2, bold = false },
+					LineNrAbove = { fg = nordic_colors.gray3, bold = false },
+					LineNrBelow = { fg = nordic_colors.gray3, bold = false },
 					-- UI
 					NormalFloat = { fg = nordic_colors.white0 },
 

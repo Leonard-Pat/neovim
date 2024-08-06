@@ -6,6 +6,7 @@ return {
 		"nvim-neotest/nvim-nio",
 		"mortepau/codicons.nvim",
 		"jay-babu/mason-nvim-dap.nvim",
+		"mxsdev/nvim-dap-vscode-js",
 	},
 	config = function()
 		local dap, dapui = require("dap"), require("dapui")
@@ -13,38 +14,26 @@ return {
 		require("codicons").setup()
 		require("mason-nvim-dap").setup()
 
+		require("dap-vscode-js").setup({
+			debugger_path = vim.fn.stdpath("data") .. "/mason/packages/js-debug-adapter",
+			debugger_cmd = { "js-debug-adapter" },
+			adapters = { "pwa-node", "pwa-chrome", "pwa-msedge", "node-terminal", "pwa-extensionHost" },
+		})
+
 		-- setup debugging for javascript/typescript
 
+		-- Configurations
 		for _, language in ipairs({ "typescript", "javascript" }) do
-			require("dap").configurations[language] = {
+			dap.configurations[language] = {
 				{
 					type = "pwa-node",
 					request = "launch",
-					name = "Launch Current File (pwa-node)",
-					cwd = vim.fn.getcwd(),
-					args = { "${file}" },
-					sourceMaps = true,
-					protocol = "inspector",
-				},
-				{
-					type = "pwa-node",
-					request = "attach",
-					name = "Attach",
-					processId = require("dap.utils").pick_process,
-					cwd = "${workspaceFolder}",
-				},
-				{
-					type = "pwa-node",
-					request = "launch",
-					name = "Debug Mocha Tests",
-					runtimeExecutable = "node",
-					runtimeArgs = {
-						"./node_modules/mocha/bin/mocha.js",
-					},
-					rootPath = "${workspaceFolder}",
-					cwd = "${workspaceFolder}",
+					name = "Launch server",
+					runtimeExecutable = "bun",
+					runtimeArgs = { "run" },
+					skipFiles = { "node_modules/**" },
 					console = "integratedTerminal",
-					internalConsoleOptions = "neverOpen",
+					cwd = "${workspaceFolder}",
 				},
 			}
 		end
