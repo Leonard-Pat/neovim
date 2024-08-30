@@ -7,7 +7,7 @@ return {
 			options = {
 				icons_enabled = true,
 				component_separators = { left = "", right = "" },
-				theme = "nordic",
+				theme = "onedark",
 				section_separators = { left = " ", right = "" },
 				disabled_filetypes = {
 					statusline = {},

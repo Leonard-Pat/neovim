@@ -7,7 +7,6 @@ return {
 		"nvim-lua/plenary.nvim",
 		"nvim-telescope/telescope-live-grep-args.nvim",
 		{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
-		"nvim-tree/nvim-web-devicons",
 	},
 	config = function()
 		local telescope = require("telescope")
@@ -36,6 +35,13 @@ return {
 		keymap.set("n", "<leader>fo", "<cmd>Telescope buffers<cr>", { desc = "Fuzzy find buffers" })
 		keymap.set("n", "<leader>fr", "<cmd>Telescope oldfiles<cr>", { desc = "Fuzzy find recent files" })
 		keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<cr>", { desc = "Fuzzy find files in cwd" })
+
+		keymap.set(
+			"n",
+			"<leader>fF",
+			"<cmd>lua require'telescope.builtin'.find_files({no_ignore=true})<cr>",
+			{ desc = "Fuzzy find files in cwd" }
+		)
 		keymap.set(
 			"n",
 			"<leader>fs",

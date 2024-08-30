@@ -5,10 +5,12 @@ return {
 		"nvim-lua/plenary.nvim",
 		"antoinemadec/FixCursorHold.nvim",
 		"adrigzr/neotest-mocha",
+		"maxandron/neotest-cairo",
 	},
 	config = function()
 		require("neotest").setup({
 			adapters = {
+				require("neotest-cairo"),
 				require("neotest-mocha")({
 					command = "/Users/leopat/.local/share/mise/shims/scarb run test-ts --full-trace",
 					command_args = function(context)

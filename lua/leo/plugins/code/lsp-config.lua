@@ -46,7 +46,7 @@ return {
 
 			local lspconfig = require("lspconfig")
 
-			require("lspconfig").typos_lsp.setup({
+			lspconfig.typos_lsp.setup({
 				-- Logging level of the language server. Logs appear in :LspLog. Defaults to error.
 				cmd_env = { RUST_LOG = "error" },
 				init_options = {
@@ -56,8 +56,12 @@ return {
 					config = "~/code/typos-lsp/crates/typos-lsp/tests/typos.toml",
 					-- How typos are rendered in the editor, can be one of an Error, Warning, Info or Hint.
 					-- Defaults to error.
-					diagnosticSeverity = "Error",
+					diagnosticSeverity = "Warning",
 				},
+			})
+
+			lspconfig.svelte.setup({
+				capabilities = capabilities,
 			})
 
 			lspconfig.jsonls.setup({
@@ -127,13 +131,13 @@ return {
 
 			vim.keymap.set("n", "<leader>fM", function()
 				require("telescope.builtin").lsp_workspace_symbols({
-					ignore_symbols = { "boolean", "string", "array", "object" },
+					ignore_symbols = { "boolean", "string", "array", "object", "constant", "variable" },
 				})
 			end, { desc = "Search functions in workspace" })
 
 			vim.keymap.set("n", "<leader>fm", function()
 				require("telescope.builtin").lsp_document_symbols({
-					ignore_symbols = { "boolean", "string", "array", "object" },
+					ignore_symbols = { "boolean", "string", "array", "object", "constant", "variable" },
 				})
 			end, { desc = "Search functions in current file" })
 
