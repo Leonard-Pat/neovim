@@ -14,7 +14,7 @@ return {
 		},
 		config = function()
 			require("mason-lspconfig").setup({
-				ensure_installed = { "tsserver", "rust_analyzer", "lua_ls", "cairo_ls" },
+				ensure_installed = { "ts_ls", "rust_analyzer", "lua_ls", "cairo_ls" },
 			})
 		end,
 	},
@@ -85,7 +85,7 @@ return {
 				capabilities = capabilities,
 			})
 
-			lspconfig.tsserver.setup({
+			lspconfig.ts_ls.setup({
 				capabilities = capabilities,
 			})
 
