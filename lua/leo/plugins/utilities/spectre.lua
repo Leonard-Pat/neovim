@@ -1,18 +1,16 @@
 return {
 	"nvim-pack/nvim-spectre",
-	lazy = "VeryLazy",
-	config = function()
-		require("spectre").setup({
-			replace_engine = {
-				["sed"] = {
-					cmd = "sed",
-					args = {
-						"-i",
-						"",
-						"-E",
-					},
+	cmd = "Spectre",
+	opts = {
+		replace_engine = {
+			["sed"] = {
+				cmd = "sed",
+				args = {
+					"-i",
+					"",
+					"-E",
 				},
 			},
-		})
-	end,
+		},
+	},
 }
