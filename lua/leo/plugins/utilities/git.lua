@@ -1,10 +1,14 @@
 return {
 	{
+		"tpope/vim-fugitive",
+	},
+	{
 		"pwntester/octo.nvim",
-		requires = {
+		dependencies = {
 			"nvim-lua/plenary.nvim",
 			"nvim-telescope/telescope.nvim",
 		},
+		lazy = "VeryLazy",
 		config = function()
 			require("octo").setup({
 				suppress_missing_scope = {
@@ -18,11 +22,11 @@ return {
 		version = "*",
 		config = function()
 			require("git-conflict").setup({
-				default_mappings = true, -- disable buffer local mapping created by this plugin
-				default_commands = true, -- disable commands created by this plugin
-				disable_diagnostics = false, -- This will disable the diagnostics in a buffer whilst it is conflicted
-				list_opener = "copen", -- command or function to open the conflicts list
-				highlights = { -- They must have background color, otherwise the default color will be used
+				default_mappings = true,
+				default_commands = true,
+				disable_diagnostics = false,
+				list_opener = "copen",
+				highlights = {
 					incoming = "DiffAdd",
 					current = "DiffText",
 				},
@@ -30,32 +34,31 @@ return {
 		end,
 	},
 	{
-		"tpope/vim-fugitive",
-	},
-	{
 		"lewis6991/gitsigns.nvim",
 		event = { "BufReadPre", "BufNewFile" },
 		opts = {
-			on_attach = function()
-				local gitsign = package.loaded.gitsigns
+			on_attach = function(bufnr)
+				local gs = package.loaded.gitsigns
 
-				vim.keymap.set("n", "<leader>gp", gitsign.preview_hunk_inline, { desc = "Preview hunk" })
-				vim.keymap.set("n", "<leader>gt", gitsign.toggle_deleted, { desc = "Toggle deleted" })
-				vim.keymap.set("n", "]h", gitsign.next_hunk, { desc = "Next Hunk" })
-				vim.keymap.set("n", "[h", gitsign.prev_hunk, { desc = "Prev Hunk" })
+				local function map(mode, l, r, opts)
+					opts = opts or {}
+					opts.buffer = bufnr
+					vim.keymap.set(mode, l, r, opts)
+				end
 
-				vim.keymap.set("v", "<leader>gr", function()
-					gitsign.reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
+				map("n", "<leader>gp", gs.preview_hunk_inline, { desc = "Preview hunk" })
+				map("n", "<leader>gt", gs.toggle_deleted, { desc = "Toggle deleted" })
+				map("n", "]h", gs.next_hunk, { desc = "Next Hunk" })
+				map("n", "[h", gs.prev_hunk, { desc = "Prev Hunk" })
+				map("v", "<leader>gr", function()
+					gs.reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
 				end, { desc = "Reset hunk" })
-
-				vim.keymap.set("n", "<leader>gR", gitsign.reset_buffer, { desc = "Reset buffer" })
-
-				vim.keymap.set("n", "<leader>gd", gitsign.diffthis, { desc = "Diff entire buffer" })
+				map("n", "<leader>gR", gs.reset_buffer, { desc = "Reset buffer" })
+				map("n", "<leader>gd", gs.diffthis, { desc = "Diff entire buffer" })
 			end,
 		},
 	},
 	{
-
 		"kdheepak/lazygit.nvim",
 		cmd = {
 			"LazyGit",
@@ -64,12 +67,9 @@ return {
 			"LazyGitFilter",
 			"LazyGitFilterCurrentFile",
 		},
-		-- optional for floating window border decoration
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 		},
-		-- setting the keybinding for LazyGit with 'keys' is recommended in
-		-- order to load the plugin when the command is run for the first time
 		keys = {
 			{ "<leader>lg", "<cmd>LazyGit<cr>", desc = "Open lazy git" },
 		},

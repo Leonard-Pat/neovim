@@ -70,6 +70,13 @@ return {
 
 			lspconfig.rust_analyzer.setup({
 				capabilities = capabilities,
+				settings = {
+					["rust-analyzer"] = {
+						cargo = {
+							features = { "std" },
+						},
+					},
+				},
 			})
 
 			lspconfig.emmet_ls.setup({

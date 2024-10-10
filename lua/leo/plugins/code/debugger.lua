@@ -1,5 +1,5 @@
 return {
-	"mfussenegger/nvim-dap",
+	"mxsdev/nvim-dap-vscode-js",
 	dependencies = {
 		"rcarriga/nvim-dap-ui",
 		"theHamsta/nvim-dap-virtual-text",
@@ -7,13 +7,15 @@ return {
 		"mortepau/codicons.nvim",
 		"jay-babu/mason-nvim-dap.nvim",
 		"mxsdev/nvim-dap-vscode-js",
+		"mfussenegger/nvim-dap",
 	},
+	lazy = "VeryLazy",
 	config = function()
 		local dap, dapui = require("dap"), require("dapui")
+
 		local utils = require("dap.utils")
 
 		require("codicons").setup()
-
 		require("mason-nvim-dap").setup({
 			-- Makes a best effort to setup the various debuggers with
 			-- reasonable debug configurations
@@ -25,98 +27,44 @@ return {
 			handlers = nil,
 			automatic_installation = true,
 		})
+		require("dap-vscode-js").setup({
+			debugger_path = vim.fn.exepath("js-debug-adapter"),
+			adapters = { "pwa-node", "pwa-chrome", "pwa-msedge", "node-terminal", "pwa-extensionHost" }, -- which adapters to register in nvim-dap
+		})
 
-		if not dap.adapters["pwa-node"] then
-			require("dap").adapters["pwa-node"] = {
-				type = "server",
-				host = "localhost",
-				port = "${port}",
-				executable = {
-					command = "node",
-					args = {
-						vim.fn.stdpath("data") .. "/mason/packages/js-debug-adapter",
-						"${port}",
+		for _, language in ipairs({ "typescript", "javascript", "typescriptreact" }) do
+			require("dap").configurations[language] = {
+				{
+					type = "pwa-node",
+					request = "launch",
+					name = "Debug Jest Tests",
+					-- trace = true, -- include debugger info
+					runtimeExecutable = "node",
+					runtimeArgs = {
+						"./node_modules/jest/bin/jest.js",
+						"--runInBand",
 					},
+					rootPath = "${workspaceFolder}",
+					cwd = "${workspaceFolder}",
+					console = "integratedTerminal",
+					internalConsoleOptions = "neverOpen",
+				},
+				{
+					type = "pwa-node",
+					request = "launch",
+					name = "Launch file",
+					program = "${file}",
+					cwd = "${workspaceFolder}",
+				},
+				{
+					type = "pwa-node",
+					request = "attach",
+					name = "Attach",
+					processId = require("dap.utils").pick_process,
+					cwd = "${workspaceFolder}",
 				},
 			}
 		end
-		if not dap.adapters["node"] then
-			dap.adapters["node"] = function(cb, config)
-				if config.type == "node" then
-					config.type = "pwa-node"
-				end
-				local nativeAdapter = dap.adapters["pwa-node"]
-				if type(nativeAdapter) == "function" then
-					nativeAdapter(cb, config)
-				else
-					cb(nativeAdapter)
-				end
-			end
-		end
-
-		local js_filetypes = { "typescript", "javascript", "typescriptreact", "javascriptreact" }
-
-		for _, language in ipairs(js_filetypes) do
-			if not dap.configurations[language] then
-				dap.configurations[language] = {
-					{
-						type = "pwa-node",
-						request = "launch",
-						name = "Launch file",
-						program = "${file}",
-						cwd = "${workspaceFolder}",
-					},
-					{
-						type = "pwa-node",
-						request = "attach",
-						name = "Attach",
-						processId = require("dap.utils").pick_process,
-						cwd = "${workspaceFolder}",
-					},
-				}
-			end
-		end
-
-		-- require("dap-vscode-js").setup({
-		-- 	debugger_path = vim.fn.stdpath("data") .. "/mason/packages/js-debug-adapter",
-		-- 	debugger_cmd = { "js-debug-adapter" },
-		-- 	adapters = { "pwa-node", "pwa-chrome" },
-		-- })
-		--
-		-- -- setup debugging for javascript/typescript
-		--
-		-- dap.adapters = {
-		-- 	["pwa-node"] = {
-		-- 		type = "server",
-		-- 		host = "::1",
-		-- 		port = "${port}",
-		-- 		executable = {
-		-- 			command = "js-debug-adapter",
-		-- 			args = {
-		-- 				"${port}",
-		-- 			},
-		-- 		},
-		-- 	},
-		-- }
-		--
-		-- for _, language in ipairs({ "typescript", "javascript" }) do
-		-- 	dap.configurations[language] = {
-		-- 		{
-		-- 			type = "pwa-node",
-		-- 			request = "launch",
-		-- 			name = "Launch file",
-		-- 			program = "${file}",
-		-- 			cwd = "${workspaceFolder}",
-		-- 		},
-		-- 		{
-		-- 			type = "pwa-node",
-		-- 			request = "attach",
-		-- 			name = "Attach to process ID",
-		-- 			processId = utils.pick_process,
-		-- 			cwd = "${workspaceFolder}",
-		-- 		},
-		-- 	}
-		-- end
 
 		-- makes sure dap ui loads when debugging starts
 		dap.listeners.before.attach.dapui_config = function()
