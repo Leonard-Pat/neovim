@@ -1,5 +1,6 @@
 return {
 	"nvim-pack/nvim-spectre",
+	lazy = "VeryLazy",
 	config = function()
 		require("spectre").setup({
 			replace_engine = {
