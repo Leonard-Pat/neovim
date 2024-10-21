@@ -1,15 +1,5 @@
 return {
 	{
-		"stevearc/oil.nvim",
-		opts = {},
-		-- Optional dependencies
-		dependencies = { { "echasnovski/mini.icons", opts = {} } },
-		keys = {
-			{ "<leader>eo", "<cmd>Oil<CR>", silent = true, desc = "Open Oil" },
-		},
-		-- dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if prefer nvim-web-devicons
-	},
-	{
 		"nvim-neo-tree/neo-tree.nvim",
 		dependencies = {
 			"nvim-lua/plenary.nvim",

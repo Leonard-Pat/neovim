@@ -60,6 +60,24 @@ return {
 				},
 			})
 
+			require("lspconfig.configs").dojo_ls = {
+				default_config = {
+					cmd = { "/Users/leopat/.local/share/mise/shims/dojo-language-server" },
+					filetypes = { "cairo" },
+					root_dir = lspconfig.util.root_pattern("Scarb.toml"),
+					settings = {},
+				},
+			}
+
+			lspconfig.dojo_ls.setup({
+				capabilities = capabilities,
+			})
+
+			lspconfig.cairo_ls.setup({
+				capabilities = capabilities,
+				cmd = { "scarb", "cairo-language-server", "--stdio" },
+			})
+
 			lspconfig.svelte.setup({
 				capabilities = capabilities,
 			})
@@ -73,7 +91,7 @@ return {
 				settings = {
 					["rust-analyzer"] = {
 						cargo = {
-							features = { "std" },
+							features = { "std", "e2e" },
 						},
 					},
 				},
@@ -83,9 +101,8 @@ return {
 				capabilities = capabilities,
 			})
 
-			lspconfig.cairo_ls.setup({
+			lspconfig.solidity_ls.setup({
 				capabilities = capabilities,
-				cmd = { "scarb", "cairo-language-server", "--stdio" },
 			})
 
 			lspconfig.tailwindcss.setup({
@@ -154,6 +171,17 @@ return {
 				"<cmd>Telescope lsp_implementations<CR>",
 				{ desc = "Show LSP implementation" }
 			) -- show lsp implementations
+
+			vim.api.nvim_create_user_command("DiagnosticToggle", function()
+				local config = vim.diagnostic.config
+				local vt = config().virtual_text
+				config({
+					virtual_text = not vt,
+					underline = not vt,
+					signs = not vt,
+				})
+			end, { desc = "toggle diagnostic" })
+			keymap.set("n", "<leader>lx", "<cmd>DiagnosticToggle<CR>", { desc = "Toggle diagnostics" })
 		end,
 	},
 }

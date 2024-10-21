@@ -1,5 +1,20 @@
 return {
 	{
+		"Everblush/nvim",
+		config = function()
+			require("everblush").setup({
+				override = {
+					IndentBlanklineChar = {
+						fg = "#a8aecb",
+					},
+					TelescopeBorder = { fg = "#dadada" },
+					LineNr = { fg = "#b3b9b8" },
+				},
+			})
+			vim.cmd.colorscheme("everblush")
+		end,
+	},
+	{
 		"navarasu/onedark.nvim",
 		config = function()
 			require("onedark").setup({
@@ -12,7 +27,7 @@ return {
 				},
 			})
 
-			vim.cmd.colorscheme("onedark")
+			-- vim.cmd.colorscheme("onedark")
 		end,
 	},
 }
