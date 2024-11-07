@@ -60,18 +60,18 @@ return {
 				},
 			})
 
-			require("lspconfig.configs").dojo_ls = {
-				default_config = {
-					cmd = { "/Users/leopat/.local/share/mise/shims/dojo-language-server" },
-					filetypes = { "cairo" },
-					root_dir = lspconfig.util.root_pattern("Scarb.toml"),
-					settings = {},
-				},
-			}
-
-			lspconfig.dojo_ls.setup({
-				capabilities = capabilities,
-			})
+			-- require("lspconfig.configs").dojo_ls = {
+			-- 	default_config = {
+			-- 		cmd = { "/Users/leopat/.local/share/mise/shims/dojo-language-server" },
+			-- 		filetypes = { "cairo" },
+			-- 		root_dir = lspconfig.util.root_pattern("Scarb.toml"),
+			-- 		settings = {},
+			-- 	},
+			-- }
+			--
+			-- lspconfig.dojo_ls.setup({
+			-- 	capabilities = capabilities,
+			-- })
 
 			lspconfig.cairo_ls.setup({
 				capabilities = capabilities,
