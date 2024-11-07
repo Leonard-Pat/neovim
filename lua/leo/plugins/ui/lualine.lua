@@ -1,5 +1,8 @@
 return {
 	"nvim-lualine/lualine.nvim",
+	dependencies = {
+		"AndreM222/copilot-lualine",
+	},
 	config = function()
 		local lualine = require("lualine")
 
@@ -64,6 +67,11 @@ return {
 						},
 						colored = true,
 						padding = 2,
+					},
+					{
+						"copilot",
+						show_colors = true,
+						show_loading = false,
 					},
 					"fileformat",
 					"filetype",
