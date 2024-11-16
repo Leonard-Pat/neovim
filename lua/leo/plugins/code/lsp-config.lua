@@ -43,39 +43,17 @@ return {
 			require("ts-error-translator").setup()
 
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
+			-- local capabilities = require("blink.cmp").get_lsp_capabilities()
 
 			local lspconfig = require("lspconfig")
-
-			lspconfig.typos_lsp.setup({
-				-- Logging level of the language server. Logs appear in :LspLog. Defaults to error.
-				cmd_env = { RUST_LOG = "error" },
-				init_options = {
-					-- Custom config. Used together with a config file found in the workspace or its parents,
-					-- taking precedence for settings declared in both.
-					-- Equivalent to the typos `--config` cli argument.
-					config = "~/code/typos-lsp/crates/typos-lsp/tests/typos.toml",
-					-- How typos are rendered in the editor, can be one of an Error, Warning, Info or Hint.
-					-- Defaults to error.
-					diagnosticSeverity = "Warning",
-				},
-			})
-
-			-- require("lspconfig.configs").dojo_ls = {
-			-- 	default_config = {
-			-- 		cmd = { "/Users/leopat/.local/share/mise/shims/dojo-language-server" },
-			-- 		filetypes = { "cairo" },
-			-- 		root_dir = lspconfig.util.root_pattern("Scarb.toml"),
-			-- 		settings = {},
-			-- 	},
-			-- }
-			--
-			-- lspconfig.dojo_ls.setup({
-			-- 	capabilities = capabilities,
-			-- })
+			local util = require("lspconfig.util")
 
 			lspconfig.cairo_ls.setup({
 				capabilities = capabilities,
-				cmd = { "scarb", "cairo-language-server", "--stdio" },
+				init_options = { hostInfo = "neovim" },
+				cmd = { "scarb", "cairo-language-server", "/C", "--node-ipc" },
+				filetypes = { "cairo" },
+				root_dir = util.root_pattern("Scarb.toml", "cairo_project.toml", ".git"),
 			})
 
 			lspconfig.svelte.setup({

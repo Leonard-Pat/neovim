@@ -28,10 +28,10 @@ return {
 		alpha.setup(dashboard.opts)
 		-- Set menu
 		dashboard.section.buttons.val = {
-			-- dashboard.button("SPC j", "󰈚   Restore Session", ":SessionRestore<cr>"),
-			dashboard.button("space fr", "󰱼   Find recent", ":Telescope oldfiles<CR>"),
 			dashboard.button("space ff", "   Find file", "Telescope find_files<CR>"),
-			dashboard.button("c", "   Config", "<cmd>:cd ~/.config/nvim | :edit init.lua <CR>"),
+			dashboard.button("c", "   Nvim Config", "<cmd>:cd ~/.config/nvim | :edit init.lua <CR>"),
+			dashboard.button("t", "   Tmux Config", "<cmd>:cd ~/.config/tmux | :edit tmux.conf <CR>"),
+			dashboard.button("k", "   Kitty Config", "<cmd>:cd ~/.config/kitty | :edit kitty.conf <CR>"),
 			dashboard.button("u", "󰂖   Update plugins", "<cmd>lua require('lazy').sync()<CR>"),
 			dashboard.button("q", "   Quit NVIM", ":qa<CR>"),
 		}

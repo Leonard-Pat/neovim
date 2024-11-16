@@ -32,3 +32,4 @@ vim.opt.splitbelow = true
 vim.opt.swapfile = false
 
 vim.g.mapleader = " "
+vim.g.maplocalleader = ","

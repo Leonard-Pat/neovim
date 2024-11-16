@@ -1,4 +1,6 @@
 return {
+	{ "ccxnu/rosebones" },
+	{ "darkvoid-theme/darkvoid.nvim" },
 	{
 		"Everblush/nvim",
 		config = function()
