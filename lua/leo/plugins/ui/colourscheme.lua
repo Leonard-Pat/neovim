@@ -1,6 +1,29 @@
 return {
-	{ "ccxnu/rosebones" },
-	{ "darkvoid-theme/darkvoid.nvim" },
+	{
+		"ccxnu/rosebones",
+		config = function()
+			require("rosebones").setup({
+				on_highlights = function(h, c)
+					h.Function = { fg = c.rose }
+				end,
+			})
+		end,
+	},
+	{
+		"rose-pine/neovim",
+		config = function()
+			require("rose-pine").setup({
+				highlight_groups = {
+					Function = { fg = "rose" },
+					fill = {
+						fg = "rose",
+						bg = "rose",
+					},
+				},
+			})
+			vim.cmd("colorscheme rose-pine")
+		end,
+	},
 	{
 		"Everblush/nvim",
 		config = function()
@@ -13,23 +36,7 @@ return {
 					LineNr = { fg = "#b3b9b8" },
 				},
 			})
-			vim.cmd.colorscheme("everblush")
-		end,
-	},
-	{
-		"navarasu/onedark.nvim",
-		config = function()
-			require("onedark").setup({
-				style = "darker",
-				highlights = {
-					WhichKey = { fg = "#d19a66" },
-					WhichKeyDesc = { fg = "#848b98" },
-					WhichKeyGroup = { fg = "#61afef" },
-					BufferLineFill = { bg = "#202328" },
-				},
-			})
-
-			-- vim.cmd.colorscheme("onedark")
+			-- vim.cmd.colorscheme("everblush")
 		end,
 	},
 }
