@@ -4,7 +4,7 @@ return {
 	cmd = "Trouble",
 	keys = {
 		{
-			"<leader>xx",
+			"<leader>xX",
 			function()
 				local trouble = require("trouble")
 				if trouble.is_open() then
@@ -17,7 +17,7 @@ return {
 			desc = "Diagnostics (Trouble)",
 		},
 		{
-			"<leader>xX",
+			"<leader>xx",
 			"<cmd>Trouble diagnostics focus filter.buf=0<cr>",
 			desc = "Buffer Diagnostics (Trouble)",
 		},

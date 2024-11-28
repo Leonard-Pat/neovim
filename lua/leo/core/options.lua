@@ -13,6 +13,8 @@ vim.opt.backspace = { "indent", "eol", "start" }
 vim.opt.clipboard:append("unnamedplus")
 
 vim.opt.wrap = true
+vim.opt.linebreak = true -- Break lines without cutting words
+vim.opt.breakindent = true -- Preserve indentation for wrapped lines
 
 vim.opt.ignorecase = true -- ignore case when searching
 vim.opt.smartcase = true -- case sensitive when search has mixed case
@@ -20,7 +22,7 @@ vim.opt.smartcase = true -- case sensitive when search has mixed case
 vim.opt.termguicolors = true
 vim.opt.background = "dark"
 
-vim.opt.scrolloff = 8
+vim.opt.scrolloff = 10
 
 vim.opt.hlsearch = false
 

@@ -32,7 +32,19 @@ return {
 		"zeioth/garbage-day.nvim",
 		dependencies = "neovim/nvim-lspconfig",
 		event = "VeryLazy",
-		opts = {},
+		opts = {
+			excluded_lsp_clients = {
+				"copilot",
+			},
+		},
+	},
+	{
+		"rachartier/tiny-inline-diagnostic.nvim",
+		event = "LspAttach",
+		priority = 1000,
+		config = function()
+			require("tiny-inline-diagnostic").setup()
+		end,
 	},
 	{
 		"neovim/nvim-lspconfig",

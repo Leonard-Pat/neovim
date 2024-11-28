@@ -1,5 +1,6 @@
 return {
 	"akinsho/bufferline.nvim",
+	event = "ColorScheme",
 	version = "*",
 	opts = {
 		options = {

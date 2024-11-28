@@ -1,14 +1,10 @@
 return {
 	{
-		"tpope/vim-fugitive",
-	},
-	{
 		"pwntester/octo.nvim",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			"nvim-telescope/telescope.nvim",
 		},
-		lazy = "VeryLazy",
 		config = function()
 			require("octo").setup({
 				suppress_missing_scope = {
