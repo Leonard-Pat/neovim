@@ -137,14 +137,22 @@ return {
 			-- fzf keybinds
 			keymap.set("n", "gR", "<cmd>FzfLua lsp_references<CR>", { desc = "Show LSP references" })
 			keymap.set("n", "gd", "<cmd>FzfLua lsp_definitions<CR>", { desc = "Show LSP implementations" })
-			vim.keymap.set("n", "<leader>fM", function()
+			keymap.set("n", "<leader>fM", function()
 				require("fzf-lua").lsp_workspace_symbols({
-					ignore_symbols = { "boolean", "string", "array", "object", "constant", "variable" },
+					regex_filter = function(entry, _)
+						local symbols_to_filter = { "boolean", "string", "array", "object", "constant", "variable" }
+						-- Return false for symbols we want to filter out
+						return not vim.tbl_contains(symbols_to_filter, entry.kind:lower())
+					end,
 				})
 			end, { desc = "Search functions in workspace" })
-			vim.keymap.set("n", "<leader>fm", function()
+			keymap.set("n", "<leader>fm", function()
 				require("fzf-lua").lsp_document_symbols({
-					ignore_symbols = { "boolean", "string", "array", "object", "constant", "variable" },
+					regex_filter = function(entry, _)
+						local symbols_to_filter = { "boolean", "string", "array", "object", "constant", "variable" }
+						-- Return false for symbols we want to filter out
+						return not vim.tbl_contains(symbols_to_filter, entry.kind:lower())
+					end,
 				})
 			end, { desc = "Search functions in current file" })
 			keymap.set("n", "<leader>fi", "<cmd>FzfLua lsp_implementations<CR>", { desc = "Show LSP implementation" })
