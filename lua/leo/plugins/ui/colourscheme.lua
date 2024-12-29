@@ -51,7 +51,6 @@ return {
 					IndentBlanklineChar = {
 						fg = "#a8aecb",
 					},
-					TelescopeBorder = { fg = "#dadada" },
 					LineNr = { fg = "#b3b9b8" },
 				},
 			})

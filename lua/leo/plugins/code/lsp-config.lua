@@ -43,7 +43,12 @@ return {
 		event = "LspAttach",
 		priority = 1000,
 		config = function()
-			require("tiny-inline-diagnostic").setup()
+			require("tiny-inline-diagnostic").setup({
+				options = {
+					multilines = true,
+				},
+			})
+			vim.diagnostic.config({ virtual_text = false })
 		end,
 	},
 	{
@@ -129,39 +134,30 @@ return {
 
 			-- set keybinds
 
-			keymap.set("n", "<space>q", vim.diagnostic.open_float, { desc = "open floating diagnostics" })
-
-			keymap.set("n", "gD", vim.lsp.buf.declaration, { desc = "Go to declaration" }) -- go to declaration
-
-			keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, { desc = "See available code actions" }) -- see available code actions, in visual mode will apply to selection
-			keymap.set("n", "<leader>rn", vim.lsp.buf.rename, { desc = "Smart rename" }) -- smart rename
-
-			keymap.set("n", "K", vim.lsp.buf.hover, { desc = "Show documentation for what is under cursor" }) -- show documentation for what is under cursor
-
-			keymap.set("n", "<leader>rs", ":LspRestart<CR>", { desc = "Restart LSP" }) -- mapping to restart lsp if necessary
-
-			keymap.set("n", "gR", "<cmd>Telescope lsp_references<CR>", { desc = "Show LSP references" })
-			keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<CR>", { desc = "Show LSP implementations" })
-
+			-- fzf keybinds
+			keymap.set("n", "gR", "<cmd>FzfLua lsp_references<CR>", { desc = "Show LSP references" })
+			keymap.set("n", "gd", "<cmd>FzfLua lsp_definitions<CR>", { desc = "Show LSP implementations" })
 			vim.keymap.set("n", "<leader>fM", function()
-				require("telescope.builtin").lsp_workspace_symbols({
+				require("fzf-lua").lsp_workspace_symbols({
 					ignore_symbols = { "boolean", "string", "array", "object", "constant", "variable" },
 				})
 			end, { desc = "Search functions in workspace" })
-
 			vim.keymap.set("n", "<leader>fm", function()
-				require("telescope.builtin").lsp_document_symbols({
+				require("fzf-lua").lsp_document_symbols({
 					ignore_symbols = { "boolean", "string", "array", "object", "constant", "variable" },
 				})
 			end, { desc = "Search functions in current file" })
+			keymap.set("n", "<leader>fi", "<cmd>FzfLua lsp_implementations<CR>", { desc = "Show LSP implementation" })
 
-			keymap.set(
-				"n",
-				"<leader>fi",
-				"<cmd>Telescope lsp_implementations<CR>",
-				{ desc = "Show LSP implementation" }
-			) -- show lsp implementations
+			-- general lsp keybinds
+			keymap.set("n", "<space>q", vim.diagnostic.open_float, { desc = "open floating diagnostics" })
+			keymap.set("n", "gD", vim.lsp.buf.declaration, { desc = "Go to declaration" })
+			keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, { desc = "See available code actions" })
+			keymap.set("n", "<leader>rn", vim.lsp.buf.rename, { desc = "Smart rename" })
+			keymap.set("n", "K", vim.lsp.buf.hover, { desc = "Show documentation for what is under cursor" })
+			keymap.set("n", "<leader>rs", ":LspRestart<CR>", { desc = "Restart LSP" })
 
+			-- custom command to toggle diagnostics
 			vim.api.nvim_create_user_command("DiagnosticToggle", function()
 				local config = vim.diagnostic.config
 				local vt = config().virtual_text

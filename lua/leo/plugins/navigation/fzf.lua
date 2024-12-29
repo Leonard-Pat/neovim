@@ -6,6 +6,7 @@ return {
 			"folke/todo-comments.nvim",
 		},
 		opts = {
+			"default",
 			oldfiles = {
 				include_current_session = true,
 			},
@@ -15,36 +16,34 @@ return {
 				},
 			},
 			grep = {
-				rg_glob = true, -- enable glob parsing
-				glob_flag = "--iglob", -- case insensitive globs
-				glob_separator = "%s%-%-", -- query separator pattern (lua): ' --'
+				rg_glob = true,
+				glob_flag = "--iglob",
+				glob_separator = "%s%-%-",
 			},
 			files = {
-				cwd_prompt = false,
+				cwd_prompt = false, -- specific to files
 			},
 			fzf_opts = {
 				["--info"] = "default",
 				["--layout"] = "default",
 			},
-		},
-		config = function()
-			vim.g.lazyvim_picker = "fzf"
-			-- set keymaps
-			local keymap = vim.keymap
-			require("fzf-lua").setup({ winopts = {
+			winopts = {
 				preview = {
 					vertical = "up:45%",
 				},
-			} })
-			-- Find files, buffers, string and diagnostics
-			keymap.set("n", "<leader>fa", "<cmd>FzfLua diagnostics_workspace<cr>", { desc = "Find diagnostics" })
-			keymap.set("n", "<leader>fo", "<cmd>FzfLua buffers<cr>", { desc = "Fuzzy find buffers" })
-			keymap.set("n", "<leader>fr", "<cmd>FzfLua oldfiles<cr>", { desc = "Fuzzy find recent files" })
-			keymap.set("n", "<leader>ff", "<cmd>FzfLua files<cr>", { desc = "Fuzzy find files in cwd" })
-			keymap.set("n", "<leader>fs", "<cmd>FzfLua live_grep<cr>", { desc = "Find string in cwd" })
-
-			-- Todo search using TodoFzfLua command
-			keymap.set("n", "<leader>ft", "<cmd>TodoFzfLua<cr>", { desc = "Find todos" })
+			},
+		},
+		config = function(_, opts)
+			vim.g.lazyvim_picker = "fzf"
+			require("fzf-lua").setup(opts)
 		end,
+		keys = {
+			{ "<leader>fa", "<cmd>FzfLua diagnostics_workspace<cr>", desc = "Find diagnostics" },
+			{ "<leader>fo", "<cmd>FzfLua buffers<cr>", desc = "Fuzzy find buffers" },
+			{ "<leader>fr", "<cmd>FzfLua oldfiles<cr>", desc = "Fuzzy find recent files" },
+			{ "<leader>ff", "<cmd>FzfLua files<cr>", desc = "Fuzzy find files in cwd" },
+			{ "<leader>fs", "<cmd>FzfLua live_grep<cr>", desc = "Find string in cwd" },
+			{ "<leader>ft", "<cmd>TodoFzfLua<cr>", desc = "Find todos" },
+		},
 	},
 }

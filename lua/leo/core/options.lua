@@ -35,3 +35,5 @@ vim.opt.swapfile = false
 
 vim.g.mapleader = " "
 vim.g.maplocalleader = ","
+
+vim.opt.fillchars:append({ eob = " " })
