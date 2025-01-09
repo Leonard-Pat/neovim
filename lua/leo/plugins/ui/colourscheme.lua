@@ -43,18 +43,4 @@ return {
 			vim.cmd("colorscheme rose-pine")
 		end,
 	},
-	{
-		"Everblush/nvim",
-		config = function()
-			require("everblush").setup({
-				override = {
-					IndentBlanklineChar = {
-						fg = "#a8aecb",
-					},
-					LineNr = { fg = "#b3b9b8" },
-				},
-			})
-			-- vim.cmd.colorscheme("everblush")
-		end,
-	},
 }

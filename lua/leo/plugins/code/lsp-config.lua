@@ -45,7 +45,10 @@ return {
 		config = function()
 			require("tiny-inline-diagnostic").setup({
 				options = {
-					multilines = true,
+					multilines = {
+						enabled = true,
+						always_show = true,
+					},
 				},
 			})
 			vim.diagnostic.config({ virtual_text = false })
@@ -130,9 +133,8 @@ return {
 				vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
 			end
 
-			local keymap = vim.keymap -- for conciseness
-
 			-- set keybinds
+			local keymap = vim.keymap
 
 			-- fzf keybinds
 			keymap.set("n", "gR", "<cmd>FzfLua lsp_references<CR>", { desc = "Show LSP references" })
