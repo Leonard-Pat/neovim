@@ -1,15 +1,5 @@
 return {
 	{
-		"ccxnu/rosebones",
-		config = function()
-			require("rosebones").setup({
-				on_highlights = function(h, c)
-					h.Function = { fg = c.rose }
-				end,
-			})
-		end,
-	},
-	{
 		"rose-pine/neovim",
 		name = "rose-pine",
 		config = function()

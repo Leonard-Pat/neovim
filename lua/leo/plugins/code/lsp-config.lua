@@ -70,10 +70,10 @@ return {
 
 			lspconfig.cairo_ls.setup({
 				capabilities = capabilities,
-				init_options = { hostInfo = "neovim" },
-				cmd = { "scarb", "cairo-language-server", "/C", "--node-ipc" },
-				filetypes = { "cairo" },
-				root_dir = util.root_pattern("Scarb.toml", "cairo_project.toml", ".git"),
+				-- init_options = { hostInfo = "neovim" },
+				-- cmd = { "scarb", "cairo-language-server", "/C", "--node-ipc" },
+				-- filetypes = { "cairo" },
+				-- root_dir = util.root_pattern("Scarb.toml", "cairo_project.toml", ".git"),
 			})
 
 			lspconfig.svelte.setup({
