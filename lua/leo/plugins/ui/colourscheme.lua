@@ -1,4 +1,5 @@
 return {
+	{ "Shatur/neovim-ayu" },
 	{
 		"rose-pine/neovim",
 		name = "rose-pine",

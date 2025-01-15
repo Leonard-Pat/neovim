@@ -62,18 +62,13 @@ return {
 			-- better ts error messages
 			require("ts-error-translator").setup()
 
-			local capabilities = require("cmp_nvim_lsp").default_capabilities()
-			-- local capabilities = require("blink.cmp").get_lsp_capabilities()
+			-- local capabilities = require("cmp_nvim_lsp").default_capabilities()
+			local capabilities = require("blink.cmp").get_lsp_capabilities()
 
 			local lspconfig = require("lspconfig")
-			local util = require("lspconfig.util")
 
 			lspconfig.cairo_ls.setup({
 				capabilities = capabilities,
-				-- init_options = { hostInfo = "neovim" },
-				-- cmd = { "scarb", "cairo-language-server", "/C", "--node-ipc" },
-				-- filetypes = { "cairo" },
-				-- root_dir = util.root_pattern("Scarb.toml", "cairo_project.toml", ".git"),
 			})
 
 			lspconfig.svelte.setup({
@@ -137,27 +132,25 @@ return {
 			local keymap = vim.keymap
 
 			-- fzf keybinds
-			keymap.set("n", "gR", "<cmd>FzfLua lsp_references<CR>", { desc = "Show LSP references" })
-			keymap.set("n", "gd", "<cmd>FzfLua lsp_definitions<CR>", { desc = "Show LSP implementations" })
-			keymap.set("n", "<leader>fM", function()
-				require("fzf-lua").lsp_workspace_symbols({
-					regex_filter = function(entry, _)
-						local symbols_to_filter = { "boolean", "string", "array", "object", "constant", "variable" }
-						-- Return false for symbols we want to filter out
-						return not vim.tbl_contains(symbols_to_filter, entry.kind:lower())
-					end,
-				})
-			end, { desc = "Search functions in workspace" })
-			keymap.set("n", "<leader>fm", function()
-				require("fzf-lua").lsp_document_symbols({
-					regex_filter = function(entry, _)
-						local symbols_to_filter = { "boolean", "string", "array", "object", "constant", "variable" }
-						-- Return false for symbols we want to filter out
-						return not vim.tbl_contains(symbols_to_filter, entry.kind:lower())
-					end,
-				})
-			end, { desc = "Search functions in current file" })
-			keymap.set("n", "<leader>fi", "<cmd>FzfLua lsp_implementations<CR>", { desc = "Show LSP implementation" })
+			-- keymap.set("n", "<leader>fM", function()
+			-- 	require("fzf-lua").lsp_workspace_symbols({
+			-- 		regex_filter = function(entry, _)
+			-- 			local symbols_to_filter = { "boolean", "string", "array", "object", "constant", "variable" }
+			-- 			-- Return false for symbols we want to filter out
+			-- 			return not vim.tbl_contains(symbols_to_filter, entry.kind:lower())
+			-- 		end,
+			-- 	})
+			-- end, { desc = "Search functions in workspace" })
+			-- keymap.set("n", "<leader>fm", function()
+			-- 	require("fzf-lua").lsp_document_symbols({
+			-- 		regex_filter = function(entry, _)
+			-- 			local symbols_to_filter = { "boolean", "string", "array", "object", "constant", "variable" }
+			-- 			-- Return false for symbols we want to filter out
+			-- 			return not vim.tbl_contains(symbols_to_filter, entry.kind:lower())
+			-- 		end,
+			-- 	})
+			-- end, { desc = "Search functions in current file" })
+			-- keymap.set("n", "<leader>fi", "<cmd>FzfLua lsp_implementations<CR>", { desc = "Show LSP implementation" })
 
 			-- general lsp keybinds
 			keymap.set("n", "<space>q", vim.diagnostic.open_float, { desc = "open floating diagnostics" })

@@ -1,20 +1,5 @@
 return {
 	{
-		"pwntester/octo.nvim",
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-			"ibhagwan/fzf-lua",
-		},
-		config = function()
-			require("octo").setup({
-				picker = "fzf-lua",
-				suppress_missing_scope = {
-					projects_v2 = true,
-				},
-			})
-		end,
-	},
-	{
 		"akinsho/git-conflict.nvim",
 		version = "*",
 		config = function()
