@@ -6,5 +6,6 @@ return {
 		require("mini.pairs").setup()
 		require("mini.comment").setup()
 		require("mini.ai").setup()
+		require("mini.bracketed").setup()
 	end,
 }
