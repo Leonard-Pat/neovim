@@ -9,8 +9,34 @@ return {
 			char = "┊",
 		} },
 		picker = {},
+		zen = {
+			toggles = {
+				dim = false,
+				win = {
+					style = {
+						enter = true,
+						fixbuf = false,
+						minimal = false,
+						width = 500,
+						height = 0,
+						backdrop = { transparent = false },
+						keys = { q = false },
+						zindex = 40,
+						wo = {
+							winhighlight = "NormalFloat:Normal",
+						},
+					},
+				},
+			},
+		},
 	},
 	keys = {
+		{
+			"<leader>z",
+			function()
+				Snacks.zen()
+			end,
+		},
 		{
 			"<leader>ff",
 			function()
@@ -88,6 +114,13 @@ return {
 				Snacks.picker.lsp_symbols()
 			end,
 			desc = "LSP Symbols",
+		},
+		{
+			"<leader>gc",
+			function()
+				Snacks.picker.git_log()
+			end,
+			desc = "Git Log",
 		},
 		{
 			"<leader>lg",
