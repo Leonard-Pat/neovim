@@ -131,27 +131,6 @@ return {
 			-- set keybinds
 			local keymap = vim.keymap
 
-			-- fzf keybinds
-			-- keymap.set("n", "<leader>fM", function()
-			-- 	require("fzf-lua").lsp_workspace_symbols({
-			-- 		regex_filter = function(entry, _)
-			-- 			local symbols_to_filter = { "boolean", "string", "array", "object", "constant", "variable" }
-			-- 			-- Return false for symbols we want to filter out
-			-- 			return not vim.tbl_contains(symbols_to_filter, entry.kind:lower())
-			-- 		end,
-			-- 	})
-			-- end, { desc = "Search functions in workspace" })
-			-- keymap.set("n", "<leader>fm", function()
-			-- 	require("fzf-lua").lsp_document_symbols({
-			-- 		regex_filter = function(entry, _)
-			-- 			local symbols_to_filter = { "boolean", "string", "array", "object", "constant", "variable" }
-			-- 			-- Return false for symbols we want to filter out
-			-- 			return not vim.tbl_contains(symbols_to_filter, entry.kind:lower())
-			-- 		end,
-			-- 	})
-			-- end, { desc = "Search functions in current file" })
-			-- keymap.set("n", "<leader>fi", "<cmd>FzfLua lsp_implementations<CR>", { desc = "Show LSP implementation" })
-
 			-- general lsp keybinds
 			keymap.set("n", "<space>q", vim.diagnostic.open_float, { desc = "open floating diagnostics" })
 			keymap.set("n", "gD", vim.lsp.buf.declaration, { desc = "Go to declaration" })

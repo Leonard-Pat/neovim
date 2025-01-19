@@ -13,8 +13,9 @@ return {
 			["<C-f>"] = { "scroll_documentation_down", "fallback" },
 			["<C-e>"] = { "hide", "fallback" },
 			cmdline = {
-				["<Tab>"] = { "show", "select_next", "fallback" },
-				["<CR>"] = { "accept", "fallback" },
+				["<Tab>"] = { "show", "accept", "fallback" },
+				["<C-k>"] = { "select_prev", "fallback" },
+				["<C-j>"] = { "select_next", "fallback" },
 				["<C-e>"] = { "hide", "fallback" },
 			},
 		},
