@@ -105,6 +105,13 @@ return {
 			desc = "Git Log",
 		},
 		{
+			"<leader>fu",
+			function()
+				Snacks.picker.undo()
+			end,
+			desc = "Undo",
+		},
+		{
 			"<leader>lg",
 			function()
 				Snacks.lazygit()
